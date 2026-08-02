@@ -1,18 +1,12 @@
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 
-export default function Hero() {
+export default function Hero({ setActiveTab }) {
   return (
-    <section id="home" className="min-h-screen flex flex-col items-center justify-center relative px-6">
+    <div className="h-full flex flex-col items-center justify-center relative">
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] -z-10 pointer-events-none" />
       
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center max-w-4xl mx-auto"
-      >
+      <div className="text-center max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent">
           MD Khademul Basher
         </h1>
@@ -25,30 +19,19 @@ export default function Hero() {
         
         <div className="flex flex-wrap items-center justify-center gap-4">
           <button 
-            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => setActiveTab('contact')}
             className="px-8 py-3 rounded-full bg-white text-black font-semibold hover:scale-105 transition-transform shadow-lg"
           >
             Get in touch
           </button>
-          <a 
-            href="https://linkedin.com/in/khademulbasher"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={() => setActiveTab('projects')}
             className="px-8 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold backdrop-blur-md border border-white/10 transition-all hover:scale-105 shadow-lg"
           >
-            LinkedIn
-          </a>
+            View Projects
+          </button>
         </div>
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        className="absolute bottom-32 text-zinc-500 cursor-pointer"
-        onClick={() => document.getElementById('experience').scrollIntoView({ behavior: 'smooth' })}
-      >
-        <ChevronDown className="w-8 h-8" />
-      </motion.div>
-    </section>
+      </div>
+    </div>
   );
 }
